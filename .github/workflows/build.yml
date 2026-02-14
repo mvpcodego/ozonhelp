@@ -34,3 +34,12 @@ jobs:
           path: dist/
           if-no-files-found: error
           retention-days: 7
+
+      - name: Publish dist branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: dist
+          force_orphan: true
