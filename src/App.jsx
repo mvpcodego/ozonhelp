@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import "./App.css";
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
