@@ -30,6 +30,15 @@ jobs:
           echo "dist contents:"
           ls -la dist
 
+      - name: Smoke test (vite preview)
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 &
+          PREVIEW_PID=$!
+          sleep 2
+          curl -fsS http://127.0.0.1:4173/ | grep -q "<title>"
+          kill $PREVIEW_PID
+          echo "preview OK"
+
       - name: Upload dist artifact
         uses: actions/upload-artifact@v4
         with:
