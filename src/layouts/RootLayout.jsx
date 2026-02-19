@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { articles } from "../data/articles";
 
 const THEME_KEY = "ozonhelp-theme";
 
@@ -10,14 +11,15 @@ const topLinkClass = ({ isActive }) =>
       : "bg-white/70 text-slate-600 hover:bg-white dark:bg-slate-800/70 dark:text-slate-200 dark:hover:bg-slate-800"
   }`;
 
-const bottomLinkClass = ({ isActive }) =>
-  `flex flex-col items-center gap-1 text-[11px] font-medium transition ${
+const bottomLinkClass = (isActive) =>
+  `flex flex-col items-center gap-1 text-xs font-semibold transition ${
     isActive ? "text-black dark:text-white" : "text-slate-500 dark:text-slate-400"
   }`;
 
 export default function RootLayout() {
   const [theme, setTheme] = useState("light");
   const [isReady, setIsReady] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const stored = localStorage.getItem(THEME_KEY);
@@ -42,6 +44,24 @@ export default function RootLayout() {
   const toggleTheme = () => {
     setTheme((current) => (current === "dark" ? "light" : "dark"));
   };
+
+  const getActiveBottomKey = () => {
+    const path = location.pathname;
+    if (path.startsWith("/cc3l")) return "cc3l";
+    if (path.startsWith("/contacts")) return "contacts";
+    if (path.startsWith("/topics")) return "topics";
+    if (path.startsWith("/article/")) {
+      const slug = path.replace("/article/", "");
+      const article = articles.find((item) => item.slug === slug);
+      if (!article) return "home";
+      if (article.category === "cc3l") return "cc3l";
+      if (article.category === "contacts") return "contacts";
+      return "topics";
+    }
+    return "home";
+  };
+
+  const activeBottomKey = getActiveBottomKey();
 
   return (
     <div className="min-h-screen">
@@ -111,58 +131,104 @@ export default function RootLayout() {
 
       <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-slate-200 bg-white px-5 pb-[env(safe-area-inset-bottom)] pt-3 backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/80">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
-          <NavLink to="/" className={bottomLinkClass} end>
-            <svg
-              aria-hidden="true"
-              className="size-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
+          <NavLink to="/" className={bottomLinkClass(activeBottomKey === "home")} end>
+            <span
+              className={`inline-flex size-9 items-center justify-center rounded-xl transition ${
+                activeBottomKey === "home"
+                  ? "bg-black text-white shadow-sm dark:bg-white dark:text-slate-900"
+                  : "bg-transparent"
+              }`}
             >
-              <path d="M4 10.5 12 4l8 6.5v7a1 1 0 0 1-1 1h-4.5V13h-5v5.5H5a1 1 0 0 1-1-1z" />
-            </svg>
+              <svg
+                aria-hidden="true"
+                className="size-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 10.5 12 4l8 6.5v7a1 1 0 0 1-1 1h-4.5V13h-5v5.5H5a1 1 0 0 1-1-1z" />
+              </svg>
+            </span>
             Главная
           </NavLink>
-          <NavLink to="/cc3l" className={bottomLinkClass}>
-            <svg
-              aria-hidden="true"
-              className="size-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
+          <NavLink to="/cc3l" className={bottomLinkClass(activeBottomKey === "cc3l")}>
+            <span
+              className={`inline-flex size-9 items-center justify-center rounded-xl transition ${
+                activeBottomKey === "cc3l"
+                  ? "bg-black text-white shadow-sm dark:bg-white dark:text-slate-900"
+                  : "bg-transparent"
+              }`}
             >
-              <path d="M3 13.5h18l-1.5-4.5a2 2 0 0 0-1.9-1.4H6.4a2 2 0 0 0-1.9 1.4z" />
-              <path d="M6.5 13.5V17M17.5 13.5V17M6.5 17h-1M17.5 17h1" />
-            </svg>
+              <svg
+                aria-hidden="true"
+                className="size-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="4" y="5" width="16" height="12" rx="2" />
+                <circle cx="16.5" cy="9.5" r="1" />
+                <path d="M7.5 12.5h9" />
+              </svg>
+            </span>
             CC3L
           </NavLink>
-          <NavLink to="/topics" className={bottomLinkClass}>
-            <svg
-              aria-hidden="true"
-              className="size-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
+          <NavLink to="/topics" className={bottomLinkClass(activeBottomKey === "topics")}>
+            <span
+              className={`inline-flex size-9 items-center justify-center rounded-xl transition ${
+                activeBottomKey === "topics"
+                  ? "bg-black text-white shadow-sm dark:bg-white dark:text-slate-900"
+                  : "bg-transparent"
+              }`}
             >
-              <path d="M4 5.5h6.5v13H4zM13.5 5.5H20v13h-6.5z" />
-            </svg>
+              <svg
+                aria-hidden="true"
+                className="size-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 7h14" />
+                <path d="M5 12h14" />
+                <path d="M5 17h14" />
+                <circle cx="4" cy="7" r="0.5" />
+                <circle cx="4" cy="12" r="0.5" />
+                <circle cx="4" cy="17" r="0.5" />
+              </svg>
+            </span>
             Разделы
           </NavLink>
-          <NavLink to="/contacts" className={bottomLinkClass}>
-            <svg
-              aria-hidden="true"
-              className="size-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
+          <NavLink to="/contacts" className={bottomLinkClass(activeBottomKey === "contacts")}>
+            <span
+              className={`inline-flex size-9 items-center justify-center rounded-xl transition ${
+                activeBottomKey === "contacts"
+                  ? "bg-black text-white shadow-sm dark:bg-white dark:text-slate-900"
+                  : "bg-transparent"
+              }`}
             >
-              <path d="M4 6h16v12H4z" />
-              <path d="m4 7 8 6 8-6" />
-            </svg>
+              <svg
+                aria-hidden="true"
+                className="size-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 6h16v12H4z" />
+                <path d="m4 7 8 6 8-6" />
+              </svg>
+            </span>
             Контакты
           </NavLink>
         </div>
