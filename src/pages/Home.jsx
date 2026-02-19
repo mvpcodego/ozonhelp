@@ -7,7 +7,10 @@ const Home = () => {
 
   return (
     <div className="space-y-10">
-      <section className="rounded-[32px] border border-white/70 bg-gradient-to-br from-white via-white to-amber-50 p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.4)] dark:border-slate-800/80 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900/60">
+      <Link
+        to={`/article/${featured.slug}`}
+        className="group block rounded-[32px] border border-white/70 bg-gradient-to-br from-white via-white to-amber-50 p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.4)] transition hover:-translate-y-0.5 hover:shadow-[0_30px_70px_-45px_rgba(15,23,42,0.45)] dark:border-slate-800/80 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900/60"
+      >
         <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
           <span className="rounded-full bg-black/90 px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] text-white dark:bg-white dark:text-slate-900">
             Закреплено
@@ -28,13 +31,10 @@ const Home = () => {
             TEYES CC3L
           </span>
         </div>
-        <Link
-          to={`/article/${featured.slug}`}
-          className="mt-6 inline-flex items-center justify-center rounded-full bg-black px-5 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-lg dark:bg-white dark:text-slate-900"
-        >
+        <span className="mt-6 inline-flex items-center justify-center rounded-full bg-black px-5 py-2 text-sm font-semibold text-white transition group-hover:-translate-y-0.5 group-hover:shadow-lg dark:bg-white dark:text-slate-900">
           Читать инструкцию
-        </Link>
-      </section>
+        </span>
+      </Link>
 
       <section>
         <div className="flex items-center justify-between">
