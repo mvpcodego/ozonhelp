@@ -71,7 +71,7 @@ const Article = () => {
                 to={`/article/${item.slug}`}
                 className="rounded-2xl border border-slate-200 bg-white p-4 text-sm text-slate-700 shadow-sm dark:border-slate-800/80 dark:bg-slate-900/70 dark:text-slate-200"
               >
-                <p className="font-semibold text-slate-900 dark:text-white">
+                <p className="text-base font-semibold text-slate-900 dark:text-white">
                   {item.title}
                 </p>
                 <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
