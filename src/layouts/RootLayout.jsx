@@ -12,7 +12,7 @@ const topLinkClass = ({ isActive }) =>
   }`;
 
 const bottomLinkClass = (isActive) =>
-  `flex flex-1 flex-col items-center gap-0.5 text-xs font-semibold transition ${
+  `flex flex-col items-center gap-0.5 text-xs font-semibold transition ${
     isActive ? "text-black dark:text-white" : "text-slate-500 dark:text-slate-400"
   }`;
 
@@ -80,15 +80,15 @@ export default function RootLayout() {
           </Link>
           <div className="flex items-center gap-2">
             <nav className="hidden gap-2 sm:flex">
-              <NavLink to="/" className={topLinkClass} end>
-                Главная
-              </NavLink>
-              <NavLink to="/cc3l" className={topLinkClass}>
-                CC3L
-              </NavLink>
-              <NavLink to="/contacts" className={topLinkClass}>
-                Контакты
-              </NavLink>
+            <NavLink to="/" className={topLinkClass} end>
+              Главная
+            </NavLink>
+            <NavLink to="/cc3l" className={topLinkClass}>
+              CC3L
+            </NavLink>
+            <NavLink to="/topics" className={topLinkClass}>
+              Разделы
+            </NavLink>
             </nav>
             <button
               type="button"
@@ -129,8 +129,8 @@ export default function RootLayout() {
         <Outlet />
       </main>
 
-      <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-slate-200 bg-white px-6 pb-[env(safe-area-inset-bottom)] pt-1 backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/80">
-        <div className="mx-auto flex max-w-3xl items-end justify-between">
+      <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-slate-200 bg-white pb-[env(safe-area-inset-bottom)] pt-0 backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/80">
+        <div className="mx-auto flex w-full max-w-3xl items-end justify-between px-5">
           <NavLink to="/" className={bottomLinkClass(activeBottomKey === "home")} end>
             <span
               className={`inline-flex size-8 items-center justify-center rounded-lg transition ${
@@ -206,30 +206,6 @@ export default function RootLayout() {
               </svg>
             </span>
             Разделы
-          </NavLink>
-          <NavLink to="/contacts" className={bottomLinkClass(activeBottomKey === "contacts")}>
-            <span
-              className={`inline-flex size-8 items-center justify-center rounded-lg transition ${
-                activeBottomKey === "contacts"
-                  ? "bg-black text-white shadow-sm dark:bg-white dark:text-slate-900"
-                  : "bg-transparent"
-              }`}
-            >
-              <svg
-                aria-hidden="true"
-                className="size-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M4 6h16v12H4z" />
-                <path d="m4 7 8 6 8-6" />
-              </svg>
-            </span>
-            Контакты
           </NavLink>
         </div>
       </nav>
