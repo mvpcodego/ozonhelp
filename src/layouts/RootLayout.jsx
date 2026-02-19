@@ -12,7 +12,7 @@ const topLinkClass = ({ isActive }) =>
   }`;
 
 const bottomLinkClass = (isActive) =>
-  `flex flex-col items-center gap-1 text-xs font-semibold transition ${
+  `flex flex-1 flex-col items-center gap-0.5 text-xs font-semibold transition ${
     isActive ? "text-black dark:text-white" : "text-slate-500 dark:text-slate-400"
   }`;
 
@@ -129,7 +129,7 @@ export default function RootLayout() {
         <Outlet />
       </main>
 
-      <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-slate-200 bg-white px-6 pb-[env(safe-area-inset-bottom)] pt-2 backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/80">
+      <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-slate-200 bg-white px-6 pb-[env(safe-area-inset-bottom)] pt-1 backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/80">
         <div className="mx-auto flex max-w-3xl items-end justify-between">
           <NavLink to="/" className={bottomLinkClass(activeBottomKey === "home")} end>
             <span
