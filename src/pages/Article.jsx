@@ -49,14 +49,14 @@ const Article = () => {
             {article.category.toUpperCase()}
           </span>
         </div>
-      </section>
 
-      <section className="space-y-4 rounded-3xl border border-slate-200 bg-white p-6 text-sm text-slate-700 shadow-sm dark:border-slate-800/80 dark:bg-slate-900/70 dark:text-slate-200">
-        {article.content.map((paragraph, index) => (
-          <p key={index} className="leading-relaxed">
-            {paragraph}
-          </p>
-        ))}
+        <div className="mt-6 space-y-4 text-base text-slate-700 dark:text-slate-200">
+          {article.content.map((paragraph, index) => (
+            <p key={index} className="leading-relaxed">
+              {paragraph}
+            </p>
+          ))}
+        </div>
       </section>
 
       {related.length > 0 && (
