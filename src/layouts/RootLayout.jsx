@@ -129,11 +129,11 @@ export default function RootLayout() {
         <Outlet />
       </main>
 
-      <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-slate-200 bg-white px-5 pb-[env(safe-area-inset-bottom)] pt-3 backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/80">
-        <div className="mx-auto flex max-w-3xl items-center justify-between">
+      <nav className="fixed bottom-0 left-0 right-0 z-30 border-t border-slate-200 bg-white px-6 pb-[env(safe-area-inset-bottom)] pt-2 backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/80">
+        <div className="mx-auto flex max-w-3xl items-end justify-between">
           <NavLink to="/" className={bottomLinkClass(activeBottomKey === "home")} end>
             <span
-              className={`inline-flex size-9 items-center justify-center rounded-xl transition ${
+              className={`inline-flex size-8 items-center justify-center rounded-lg transition ${
                 activeBottomKey === "home"
                   ? "bg-black text-white shadow-sm dark:bg-white dark:text-slate-900"
                   : "bg-transparent"
@@ -156,7 +156,7 @@ export default function RootLayout() {
           </NavLink>
           <NavLink to="/cc3l" className={bottomLinkClass(activeBottomKey === "cc3l")}>
             <span
-              className={`inline-flex size-9 items-center justify-center rounded-xl transition ${
+              className={`inline-flex size-8 items-center justify-center rounded-lg transition ${
                 activeBottomKey === "cc3l"
                   ? "bg-black text-white shadow-sm dark:bg-white dark:text-slate-900"
                   : "bg-transparent"
@@ -181,7 +181,7 @@ export default function RootLayout() {
           </NavLink>
           <NavLink to="/topics" className={bottomLinkClass(activeBottomKey === "topics")}>
             <span
-              className={`inline-flex size-9 items-center justify-center rounded-xl transition ${
+              className={`inline-flex size-8 items-center justify-center rounded-lg transition ${
                 activeBottomKey === "topics"
                   ? "bg-black text-white shadow-sm dark:bg-white dark:text-slate-900"
                   : "bg-transparent"
@@ -209,7 +209,7 @@ export default function RootLayout() {
           </NavLink>
           <NavLink to="/contacts" className={bottomLinkClass(activeBottomKey === "contacts")}>
             <span
-              className={`inline-flex size-9 items-center justify-center rounded-xl transition ${
+              className={`inline-flex size-8 items-center justify-center rounded-lg transition ${
                 activeBottomKey === "contacts"
                   ? "bg-black text-white shadow-sm dark:bg-white dark:text-slate-900"
                   : "bg-transparent"
