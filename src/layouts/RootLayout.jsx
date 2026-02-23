@@ -66,11 +66,7 @@ export default function RootLayout() {
 
   return (
     <div className="min-h-screen">
-      <header
-        className={`sticky top-0 z-20 border-b border-transparent bg-[#f7f8fb] dark:border-slate-800/80 dark:bg-slate-950/70 dark:backdrop-blur ${
-          isTelegramWebApp ? "hidden" : ""
-        }`}
-      >
+      <header className="sticky top-0 z-20 border-b border-transparent bg-[#f7f8fb] dark:border-slate-800/80 dark:bg-slate-950/70 dark:backdrop-blur">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-5 py-4">
           <Link to="/" className="group">
             <div className="flex items-center gap-2 text-sm font-semibold">
